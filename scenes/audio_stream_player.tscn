@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://oky8q3vbjewf"]
+
+[ext_resource type="AudioStream" uid="uid://brdhiysucsuls" path="res://assets/inf sounds/Ludum Dare 38 - Track 2.wav" id="1_4chiy"]
+[ext_resource type="AudioStream" uid="uid://c018q17j2ksxx" path="res://assets/inf sounds/jump.wav" id="2_yj1wt"]
+[ext_resource type="AudioStream" uid="uid://dfc5rubajtxk6" path="res://assets/inf sounds/crash.wav" id="3_qwebm"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_4chiy")
+autoplay = true
+
+[node name="Sound effects" type="Node2D" parent="."]
+
+[node name="jump" type="AudioStreamPlayer" parent="Sound effects"]
+stream = ExtResource("2_yj1wt")
+
+[node name="crash" type="AudioStreamPlayer" parent="Sound effects"]
+stream = ExtResource("3_qwebm")

@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://bj78e2qx4b70t"]
+
+[ext_resource type="Script" path="res://scripts/runner.gd" id="1_3yb7m"]
+[ext_resource type="Script" path="res://scripts/InfinitePlayer.gd" id="1_fx62e"]
+[ext_resource type="PackedScene" uid="uid://b2h2d56s8lavu" path="res://scenes/RunnerGround.tscn" id="1_r2bri"]
+[ext_resource type="PackedScene" uid="uid://oky8q3vbjewf" path="res://scenes/audio_stream_player.tscn" id="2_5uiyg"]
+[ext_resource type="Texture2D" uid="uid://ctv4e4osdosma" path="res://assets/crash_0.png" id="3_3ypwc"]
+[ext_resource type="Texture2D" uid="uid://dpjy05tycm8ss" path="res://assets/crash_1.png" id="4_uxr7e"]
+[ext_resource type="Texture2D" uid="uid://buwo10u1c14ig" path="res://assets/tile_0040.png" id="5_0gs83"]
+[ext_resource type="Texture2D" uid="uid://buojl7i0w2cd3" path="res://assets/tile_0041.png" id="6_c0osv"]
+[ext_resource type="Texture2D" uid="uid://qk68ncohv5ep" path="res://assets/tile_0042.png" id="7_h2t0l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k31la"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvraa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3ypwc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uxr7e")
+}],
+"loop": true,
+"name": &"crash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0gs83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_c0osv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h2t0l")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="runner" type="Node2D"]
+script = ExtResource("1_3yb7m")
+
+[node name="Ground" parent="." instance=ExtResource("1_r2bri")]
+position = Vector2(287, 474)
+script = null
+
+[node name="Ground2" parent="." instance=ExtResource("1_r2bri")]
+position = Vector2(695, 474)
+script = null
+
+[node name="Ground3" parent="." instance=ExtResource("1_r2bri")]
+position = Vector2(1087, 474)
+script = null
+
+[node name="Ground4" parent="." instance=ExtResource("1_r2bri")]
+position = Vector2(1435, 474)
+script = null
+
+[node name="Ground5" parent="." instance=ExtResource("1_r2bri")]
+position = Vector2(1780, 474)
+script = null
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("2_5uiyg")]
+
+[node name="InfinitePlayer" type="CharacterBody2D" parent="."]
+position = Vector2(257, 357)
+scale = Vector2(3, 3)
+script = ExtResource("1_fx62e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfinitePlayer"]
+shape = SubResource("CapsuleShape2D_k31la")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="InfinitePlayer"]
+scale = Vector2(1.33333, 1.45833)
+sprite_frames = SubResource("SpriteFrames_qvraa")
+animation = &"run"
+frame_progress = 0.996504
+
+[node name="Camera2D" type="Camera2D" parent="InfinitePlayer"]
+position = Vector2(0, 1)
+scale = Vector2(0.333333, 0.333333)
+
+[node name="Control" type="Control" parent="InfinitePlayer/Camera2D"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -257.0
+offset_top = -360.0
+offset_right = -164.0
+offset_bottom = -327.0
+
+[node name="Label" type="Label" parent="InfinitePlayer/Camera2D/Control"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = 40.0
+offset_right = 11210.0
+offset_bottom = 6470.0
+scale = Vector2(0.1, 0.1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4000
+theme_override_font_sizes/font_size = 600
+text = "Game over!"
+horizontal_alignment = 1
+vertical_alignment = 1
